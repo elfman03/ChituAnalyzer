@@ -70,11 +70,13 @@ def doSer():
       elif((esp_state==2) and (s.find(";CONNECT,4\r\n")==-0)):
         print("    ESP coming online -- CONNECT")
         esp_state=3
+        # my USB sled does not seem to like 2250000 so dont actually change
         #buf=b"AT+UART_CUR=2250000,8,1,0,0\r\n"
         #ser.write(buf)
       elif((esp_state==3) and (s.find("\r\nOK\r\n")==-0)):
         esp_state=0
         print("    ESP coming online -- Baud change accept")
+        # my USB sled does not seem to like 2250000 so dont actually change
         #ser.close()
         #ser=serial.Serial(port=myport,baudrate=2250000,timeout=1,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS)
         #ser.isOpen()
