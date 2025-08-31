@@ -13,16 +13,18 @@ This is a collection of scripts and info from analyzing the interface between th
 
 Analysis technique precondition:
    * Replace ESP01 in printer with an ESP running ESPEasy and a TCP bridge
-       Device 1 : Communication - Serial Server named "serial-115200" - port HW Serial0
-       Device 2 : Communication - Serial Server named "serial-2250000" - port HW Serial0
+       * Device 1 : Communication - Serial Server named "serial-115200" - port HW Serial0
+       * Device 2 : Communication - Serial Server named "serial-2250000" - port HW Serial0
        * Rule set 1:
-On System#Boot Do
-   TaskDisable serial-2250000
-   TaskEnable serial-115200
-   SerialSendMix,";auth ok 2",0x0d,0x0a,0x0d,0x0a,"ready",0x0d,0x0a,";CONNECT,4",0x0d,0x0a,0x0d,0x0a,"OK",0x0d,0x0a
-   TaskDisable serial-115200
-  TaskEnable serial-2250000
-Endon
+           ```
+           On System#Boot Do
+           TaskDisable serial-2250000
+           TaskEnable serial-115200
+           SerialSendMix,";auth ok 2",0x0d,0x0a,0x0d,0x0a,"ready",0x0d,0x0a,";CONNECT,4",0x0d,0x0a,0x0d,0x0a,"OK",0x0d,0x0a
+           TaskDisable serial-115200
+           TaskEnable serial-2250000
+           Endon
+           ```
    * Place the ESP01 from the printer into a ESP USB adapter connected to pc (windows)
 
 Analysis technique:
