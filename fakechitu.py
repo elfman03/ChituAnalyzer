@@ -88,6 +88,10 @@ def doSer():
         print("    ESP ready")
       elif(s.find("OK,SEND DONE")==0):
         print("    ESP done")
+      elif(s.find("\r\nOK\r\n")==0):
+        print("    received OK message")
+      elif(s.find("+GMR:")==0):
+        print("    received GMR response")
       elif(s.find("\r\n+IPD,4,5:M4000")==0):
         print(">>> respond to M4000")
         buf=b"AT+CIPSEND=4,88\rok B:25/0 E1:28/0 E2:1077/0 X:0.000 Y:0.000 Z:205.850 F:0/0 D:0/0/1 I:-49493/0 L:0 T:0\r\n"
