@@ -76,6 +76,10 @@ def doSer():
       elif((esp_state==3) and (s.find("\r\nOK\r\n")==-0)):
         esp_state=0
         print("    ESP coming online -- Baud change accept")
+        sleep(6)
+        #buf=b"AT+CIPSEND=4,88\rok B:25/0 E1:28/0 E2:1077/0 X:0.000 Y:0.000 Z:205.850 F:0/0 D:0/0/1 I:-49493/0 L:0 T:0\r\n"
+        buf=b"AT+GMR\r\n"
+        ser.write(buf)
         # my USB sled does not seem to like 2250000 so dont actually change
         #ser.close()
         #ser=serial.Serial(port=myport,baudrate=2250000,timeout=1,parity=serial.PARITY_NONE,stopbits=serial.STOPBITS_ONE,bytesize=serial.EIGHTBITS)

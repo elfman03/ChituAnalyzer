@@ -41,7 +41,7 @@ def doTcp():
         tcp.send(buf)
       elif(s=="AT+GMR\r\n"):
         print("respond to AT+GMR")
-        buf=b'+GMR:fe,db,9b,f8,5c,38,a9,cc V10.0.12'
+        buf=b'+GMR:00,00,00,00,00,00,00,00 V10.0.12\r\n'
         print("------"+printable(buf.decode('utf-8'))+"------")
         tcp.send(buf)
         if(initialized==0):
