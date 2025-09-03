@@ -17,8 +17,8 @@ def doTcp():
   tcp.settimeout(3)
   tcp.connect(("192.168.10.245",8080))
   #
-  #initialized=0
-  initialized=1
+  initialized=0
+  #initialized=1
   while(1):
     skip=False
     data=b""
@@ -41,11 +41,23 @@ def doTcp():
         tcp.send(buf)
       elif(s=="AT+GMR\r\n"):
         print("respond to AT+GMR")
-        buf=b'+GMR:00,00,00,00,00,00,00,00 V10.0.12\r\nOK\r\n'
+        # rule seems to be that the version has to start with V and can have up to 8 additional characters with \r\n added or 9 with just \n
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V10.0.12\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3.0.ab\r\nOK\r\n'
+        #n buf=b'+GMR:00,00,00,00,00,00,00,00 3.0.ab\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3.0.abc\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3.0.abcd\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3.0.abcd\r\nOK\r\n'
+        #n buf=b'+GMR:00,00,00,00,00,00,00,00 V3.10.abcd\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3.10.abc\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 V3x10abcd\r\nOK\r\n'
+        #y buf=b'+GMR:00,00,00,00,00,00,00,00 Vabcdefgh\r\nOK\r\n'
+        #n buf=b'+GMR:00,00,00,00,00,00,00,00 Xabcdefgh\r\nOK\r\n'
+        buf=b'+GMR:00,00,00,00,00,00,00,00 Vabcdefghi\n\r\nOK\r\n'
         print("------"+printable(buf.decode('utf-8'))+"------")
         tcp.send(buf)
-        if(initialized==0):
-          initialized=1
+        #if(initialized==0):
+        #  initialized=1
       elif(s=="AT+CWJAP?\r\n"):
         print("respond to AT+CWJAP?")
         buf=b'+CWJAP:"elford_iot"\r\r\n\r\r\nOK\r\r\n'
