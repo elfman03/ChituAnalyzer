@@ -40,3 +40,4 @@ Analysis technique:
           * start script, reset the chitu ESP then connect to the chitu esp from the Chitu HB app.  you should see requests go back/forth and the Chitu HB app should see what looks like a Chitu printer attached
 
 
+NOTES:   interesting reference discussion regarding Chitu's command codes: https://www.reddit.com/r/resinprinting/comments/q83622/chitu_systems_boards_gcode/
